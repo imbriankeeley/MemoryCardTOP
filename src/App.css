@@ -1,11 +1,13 @@
 #root {
   min-height: 100dvh;
   background: #9bcbb0;
+  background-image: url(../public/sdsbackground.jpg);
 }
 
 p,
 h1,
-h2 {
+h2,
+span {
   font-family: "Algerian", "Comic Sans", serif;
   color: black;
 }
@@ -17,26 +19,30 @@ p {
 h2 {
   padding: 0;
   margin: 0;
+  font-size: 1.5rem;
   text-align: center;
+
+  filter: drop-shadow(0 0 0.75rem #000000);
 }
 
 img {
-  width: 200px;
-  height: 300px;
+  height: 220px;
   border-radius: 1rem;
   display: block;
+
+  filter: drop-shadow(0 0 0.75rem #000000);
 }
 
 button {
   font-size: 1.5rem;
   padding: 5px;
-  background-color: #85bfb2;
   color: black;
 }
 
 button:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 0.75rem #9da95a);
+
+  filter: drop-shadow(0 0 0.75rem #000000);
 }
 
 button:active {
@@ -54,8 +60,9 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 20dvw;
-  background: #85bfb2;
+  min-width: 23dvw;
+  max-width: 23dvw;
+  height: 300px;
   border-radius: 1rem;
   padding: 10px;
   transition: all 0.5s ease;
@@ -76,14 +83,25 @@ button:active {
   flex: 1 1 auto;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  padding-bottom: 50px;
+  gap: 20px;
 }
 
 .winScreen {
-  height: 80dvh;
+  height: 70dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.playAgainBtn {
+  font-family: "Algerian", "Comic Sans", serif;
+  background-color: #995a;
+  border-radius: 1rem;
+  padding: 10px;
+}
+
+.level {
+  text-align: center;
+  padding: 0;
 }

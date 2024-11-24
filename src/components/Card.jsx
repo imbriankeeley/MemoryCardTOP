@@ -21,14 +21,14 @@ export default function Card({
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <button className="card" onMouseUp={() => onMouseUp(name)}>
+      <div className="card" onMouseUp={() => onMouseUp(name)}>
         <img src={back} />
-      </button>
+      </div>
 
-      <button className="card" onMouseUp={() => onMouseUp(name)}>
+      <div className="card" onMouseUp={() => onMouseUp(name)}>
         <img src={front} />
         <h2>{name}</h2>
-      </button>
+      </div>
     </ReactCardFlip>
   );
 }

@@ -3,6 +3,7 @@ export default function YouWin({ onClick }) {
     <div className="winScreen">
       <h1>Congrats You Won!</h1>
       <button
+        className="playAgainBtn"
         onClick={() => {
           onClick();
         }}

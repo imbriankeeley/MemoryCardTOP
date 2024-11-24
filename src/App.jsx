@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import autoAnimate from "@formkit/auto-animate";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import shuffleArray from "./utils/helpers/shuffleArray.js";
 import shuffleCards from "./utils/helpers/shuffleCards.js";
 import "./App.css";
@@ -7,6 +8,7 @@ import Title from "./components/Title.jsx";
 import ScoreBoard from "./components/ScoreBoard.jsx";
 import Card from "./components/Card";
 import YouWin from "./components/YouWin.jsx";
+import Level from "./components/Level";
 
 function App() {
   const [newGame, setNewGame] = useState(0);
@@ -16,18 +18,20 @@ function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [won, setWon] = useState(false);
+  const [level, setLevel] = useState(1);
 
-  const parent = useRef(null);
   const [isFlipped, setIsFlipped] = useState(false);
 
-  useEffect(() => {
-    parent.current &&
-      autoAnimate(parent.current, {
-        duration: 500,
-        easing: "ease",
-        disrespectUserMotionPreference: false,
-      });
-  }, [parent, newGame]);
+  const [mainRef] = useAutoAnimate({
+    duration: 500,
+    easing: "ease-in-out",
+    disrespectUserMotionPreference: false,
+  });
+  const [headRef] = useAutoAnimate({
+    duration: 100,
+    easing: "ease",
+    disrespectUserMotionPreference: false,
+  });
 
   useEffect(() => {
     const getCardBack = async () => {
@@ -61,16 +65,23 @@ function App() {
             image: character.character.images.jpg.image_url,
           };
           if (
-            character.character.name !== "Hawk" &&
+            // No images for these characters
             character.character.name !== "Narrator" &&
-            character.character.name !== "Goddess Clan Member" &&
-            character.character.name !== "Liones, Bartra"
+            character.character.name !== "Goddess Clan Member"
           ) {
             allCharactersArray.push(currCharacter);
           }
         });
         shuffleArray(allCharactersArray);
-        setAnimeCharacters(allCharactersArray.slice(0, 8));
+        if (level === 1) {
+          setAnimeCharacters(allCharactersArray.slice(0, 3));
+        }
+        if (level === 2) {
+          setAnimeCharacters(allCharactersArray.slice(0, 8));
+        }
+        if (level === 3) {
+          setAnimeCharacters(allCharactersArray.slice(0, 12));
+        }
       } catch (error) {
         console.error("Error fetching anime characters:", error);
       }
@@ -81,6 +92,9 @@ function App() {
   }, [newGame]);
 
   const playAgain = () => {
+    if (level === 3) {
+      setLevel(1);
+    }
     setScore(0);
     setBestScore(0);
     setSelectedCards([]);
@@ -100,7 +114,18 @@ function App() {
         setBestScore(newScore);
       }
 
-      if (newScore === 8) {
+      if (newScore === 3 && level === 1) {
+        setLevel(2);
+        playAgain();
+        return;
+      }
+      if (newScore === 8 && level === 2) {
+        setLevel(3);
+        playAgain();
+        return;
+      }
+
+      if (newScore === 12 && level === 3) {
         setWon(true);
         return;
       }
@@ -123,12 +148,13 @@ function App() {
   return (
     <>
       <div className="head">
-        <div className="top">
+        <div ref={headRef} className="top">
           <Title />
+          <Level key={`level-${level}`} level={level} />
           <ScoreBoard score={score} bestScore={bestScore} />
         </div>
       </div>
-      <div ref={parent} className="card-section">
+      <div ref={mainRef} className="card-section">
         {animeCharacters.map((character) => (
           <Card
             key={character.id}
