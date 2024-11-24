@@ -1,19 +1,12 @@
-import { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import autoAnimate from "@formkit/auto-animate";
+import shuffleArray from "./utils/helpers/shuffleArray.js";
+import shuffleCards from "./utils/helpers/shuffleCards.js";
 import "./App.css";
 import Title from "./components/Title.jsx";
 import ScoreBoard from "./components/ScoreBoard.jsx";
 import Card from "./components/Card";
 import YouWin from "./components/YouWin.jsx";
-
-function shuffleArray(array) {
-  for (var i = array.length - 1; i >= 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-}
 
 function App() {
   const [newGame, setNewGame] = useState(0);
@@ -24,7 +17,17 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
   const [won, setWon] = useState(false);
 
-  const [positions, setPositions] = useState({});
+  const parent = useRef(null);
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  useEffect(() => {
+    parent.current &&
+      autoAnimate(parent.current, {
+        duration: 500,
+        easing: "ease",
+        disrespectUserMotionPreference: false,
+      });
+  }, [parent, newGame]);
 
   useEffect(() => {
     const getCardBack = async () => {
@@ -80,22 +83,11 @@ function App() {
   const playAgain = () => {
     setScore(0);
     setBestScore(0);
-    shuffleCards();
+    setSelectedCards([]);
+    setIsFlipped(false);
+    shuffleCards(animeCharacters, setAnimeCharacters);
     setWon(false);
     setNewGame((prev) => prev + 1);
-  };
-
-  const shuffleCards = () => {
-    const shuffle = animeCharacters;
-    shuffleArray(shuffle);
-
-    const newPositions = {};
-    shuffle.forEach((char, index) => {
-      newPositions[char.id] = index;
-    });
-
-    setAnimeCharacters(shuffle);
-    setPositions(newPositions);
   };
 
   const selectCard = (name) => {
@@ -113,8 +105,11 @@ function App() {
         return;
       }
 
-      shuffleCards();
+      setIsFlipped(false);
+
+      shuffleCards(animeCharacters, setAnimeCharacters);
     } else {
+      setIsFlipped(false);
       setScore(0);
       setSelectedCards([]);
       setNewGame((prev) => prev + 1);
@@ -133,20 +128,21 @@ function App() {
           <ScoreBoard score={score} bestScore={bestScore} />
         </div>
       </div>
-      <AnimatePresence>
-        <div className="card-section">
-          {animeCharacters.map((character) => (
-            <Card
-              key={character.id}
-              id={character.id}
-              name={character.name}
-              image={character.image}
-              onMouseUp={selectCard}
-              position={positions[character.id] || 0}
-            />
-          ))}
-        </div>
-      </AnimatePresence>
+      <div ref={parent} className="card-section">
+        {animeCharacters.map((character) => (
+          <Card
+            key={character.id}
+            name={character.name}
+            back={cardBack}
+            front={character.image}
+            onMouseUp={selectCard}
+            newGame={newGame}
+            score={score}
+            isFlipped={isFlipped}
+            setIsFlipped={setIsFlipped}
+          />
+        ))}
+      </div>
     </>
   );
 }

@@ -1,18 +1,34 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import ReactCardFlip from "react-card-flip";
 
-export default function Card({ name, image, onMouseUp, index }) {
+export default function Card({
+  name,
+  back,
+  front,
+  onMouseUp,
+  newGame,
+  score,
+  isFlipped,
+  setIsFlipped,
+}) {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsFlipped(true);
+    }, 700);
+
+    return () => clearTimeout(timer);
+  }, [isFlipped, newGame, score]);
+
   return (
-    <motion.div
-      className="card"
-      layout
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      onMouseUp={() => onMouseUp(name)}
-    >
-      <img src={image} />
-      <h2>{name}</h2>
-    </motion.div>
+    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+      <button className="card" onMouseUp={() => onMouseUp(name)}>
+        <img src={back} />
+      </button>
+
+      <button className="card" onMouseUp={() => onMouseUp(name)}>
+        <img src={front} />
+        <h2>{name}</h2>
+      </button>
+    </ReactCardFlip>
   );
 }
