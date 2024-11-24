@@ -139,70 +139,89 @@ button:active {
 }
 
 @media (max-width: 565px) {
+  .top {
+    padding: 10px;
+  }
   h1 {
     font-size: 1rem;
   }
   h2 {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   p {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
   .instructions {
-    font-size: 0.6rem;
+    font-size: 1rem;
   }
   img {
-    height: 125px;
+    height: 110px;
   }
   .card {
-    min-width: 15dvw;
-    max-width: 15dvw;
-    height: 225px;
+    min-width: 20dvw;
+    max-width: 20dvw;
+    height: 180px;
+  }
+  .board {
+    padding-left: 10px;
   }
 }
 
 @media (max-width: 480px) {
+  .top {
+    padding: 10px;
+  }
   h1 {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   h2 {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
   p {
-    font-size: 0.6rem;
+    font-size: 1rem;
   }
   .instructions {
-    font-size: 0.5rem;
+    font-size: 1rem;
   }
   img {
-    height: 100px;
+    height: 110px;
   }
   .card {
-    min-width: 15dvw;
-    max-width: 15dvw;
-    height: 200px;
+    min-width: 20dvw;
+    max-width: 20dvw;
+    height: 180px;
+  }
+  .board {
+    padding-left: 10px;
   }
 }
 
 @media (max-width: 405px) {
+  .top {
+    padding: 10px;
+  }
   h1 {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
   h2 {
-    font-size: 0.6rem;
+    font-size: 1rem;
   }
   p {
-    font-size: 0.5rem;
+    font-size: 1rem;
   }
   .instructions {
-    font-size: 0.4rem;
+    font-size: 1rem;
   }
   img {
-    height: 90px;
+    height: 110px;
   }
   .card {
-    min-width: 15dvw;
-    max-width: 15dvw;
+    min-width: 20dvw;
+    max-width: 20dvw;
     height: 180px;
+  }
+
+  .board {
+    padding-left: 10px;
   }
 }
