@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 import "./App.css";
 import Title from "./components/Title.jsx";
 import ScoreBoard from "./components/ScoreBoard.jsx";
@@ -22,6 +23,8 @@ function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [won, setWon] = useState(false);
+
+  const [positions, setPositions] = useState({});
 
   useEffect(() => {
     const getCardBack = async () => {
@@ -85,7 +88,14 @@ function App() {
   const shuffleCards = () => {
     const shuffle = animeCharacters;
     shuffleArray(shuffle);
+
+    const newPositions = {};
+    shuffle.forEach((char, index) => {
+      newPositions[char.id] = index;
+    });
+
     setAnimeCharacters(shuffle);
+    setPositions(newPositions);
   };
 
   const selectCard = (name) => {
@@ -123,16 +133,20 @@ function App() {
           <ScoreBoard score={score} bestScore={bestScore} />
         </div>
       </div>
-      <div className="card-section">
-        {animeCharacters.map((character) => (
-          <Card
-            key={character.id}
-            name={character.name}
-            image={character.image}
-            onMouseUp={selectCard}
-          />
-        ))}
-      </div>
+      <AnimatePresence>
+        <div className="card-section">
+          {animeCharacters.map((character) => (
+            <Card
+              key={character.id}
+              id={character.id}
+              name={character.name}
+              image={character.image}
+              onMouseUp={selectCard}
+              position={positions[character.id] || 0}
+            />
+          ))}
+        </div>
+      </AnimatePresence>
     </>
   );
 }
