@@ -152,6 +152,10 @@ function App() {
           <Level key={`level-${level}`} level={level} />
           <ScoreBoard score={score} bestScore={bestScore} />
         </div>
+        <p className="instructions">
+          Select each card exactly once, selecting the same card twice will
+          result in a loss.
+        </p>
       </div>
       <div ref={mainRef} className="card-section">
         {animeCharacters.map((character) => (

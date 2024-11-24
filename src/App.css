@@ -54,6 +54,7 @@ button:active {
   display: flex;
   justify-content: space-between;
   padding: 35px;
+  padding-bottom: 0;
 }
 
 .card {
@@ -104,4 +105,12 @@ button:active {
 .level {
   text-align: center;
   padding: 0;
+}
+
+.instructions {
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+  text-align: center;
 }
