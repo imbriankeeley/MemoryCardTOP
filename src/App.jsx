@@ -140,7 +140,7 @@ function App() {
     }
   };
 
-  if (!won) {
+  if (won) {
     return <YouWin cardBack={cardBack} onClick={playAgain} />;
   }
 
