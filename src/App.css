@@ -114,3 +114,95 @@ button:active {
   margin-bottom: 10px;
   text-align: center;
 }
+
+@media (max-width: 750px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+  .instructions {
+    font-size: 0.8rem;
+  }
+  img {
+    height: 150px;
+  }
+  .card {
+    min-width: 18dvw;
+    max-width: 18dvw;
+    height: 250px;
+  }
+}
+
+@media (max-width: 565px) {
+  h1 {
+    font-size: 1rem;
+  }
+  h2 {
+    font-size: 0.8rem;
+  }
+  p {
+    font-size: 0.7rem;
+  }
+  .instructions {
+    font-size: 0.6rem;
+  }
+  img {
+    height: 125px;
+  }
+  .card {
+    min-width: 15dvw;
+    max-width: 15dvw;
+    height: 225px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 0.8rem;
+  }
+  h2 {
+    font-size: 0.7rem;
+  }
+  p {
+    font-size: 0.6rem;
+  }
+  .instructions {
+    font-size: 0.5rem;
+  }
+  img {
+    height: 100px;
+  }
+  .card {
+    min-width: 15dvw;
+    max-width: 15dvw;
+    height: 200px;
+  }
+}
+
+@media (max-width: 405px) {
+  h1 {
+    font-size: 0.7rem;
+  }
+  h2 {
+    font-size: 0.6rem;
+  }
+  p {
+    font-size: 0.5rem;
+  }
+  .instructions {
+    font-size: 0.4rem;
+  }
+  img {
+    height: 90px;
+  }
+  .card {
+    min-width: 15dvw;
+    max-width: 15dvw;
+    height: 180px;
+  }
+}
