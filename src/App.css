@@ -42,12 +42,12 @@ button {
 button:hover {
   transform: scale(1.05);
 
-  filter: drop-shadow(0 0 0.75rem #000000);
+  filter: drop-shadow(0 0 0.75rem #4d0000);
 }
 
 button:active {
   transform: scale(1.01);
-  filter: drop-shadow(0 0 0.75 #79999);
+  filter: drop-shadow(0 0 0.75 #4d0000);
 }
 
 .top {
@@ -70,12 +70,12 @@ button:active {
 
 .card:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 0.75rem #9da95a);
+  filter: drop-shadow(0 0 0.75rem #4d0000);
 }
 
 .card:active {
   transform: scale(1.01);
-  filter: drop-shadow(0 0 0.75 #79999);
+  filter: drop-shadow(0 0 0.75 #4d0000);
 }
 
 .card-section {

@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import autoAnimate from "@formkit/auto-animate";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import shuffleArray from "./utils/helpers/shuffleArray.js";
 import shuffleCards from "./utils/helpers/shuffleCards.js";
@@ -141,7 +140,7 @@ function App() {
     }
   };
 
-  if (won) {
+  if (!won) {
     return <YouWin cardBack={cardBack} onClick={playAgain} />;
   }
 
