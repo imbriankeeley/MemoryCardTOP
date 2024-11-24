@@ -16,7 +16,7 @@ export default function Level({ level }) {
   if (level === 3) {
     return (
       <h1 style={{ whiteSpace: "nowrap" }} className="level">
-        Leve 3 - Hard
+        Level 3 - Hard
       </h1>
     );
   }
