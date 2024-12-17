@@ -24,7 +24,6 @@ export default function Card({
       <div className="card" onMouseUp={() => onMouseUp(name)}>
         <img src={back} />
       </div>
-
       <div className="card" onMouseUp={() => onMouseUp(name)}>
         <img src={front} />
         <h2>{name}</h2>
